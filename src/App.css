@@ -1,0 +1,7 @@
+.responsive-iframe-wrapper iframe {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 200px;
+  border: none;
+  display: block;
+}
