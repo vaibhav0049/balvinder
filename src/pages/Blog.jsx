@@ -1,5 +1,6 @@
 import React, { useState ,useEffect} from 'react';
 import '../App.css';
+import './Blog.css';
 import breathworkImg from '../assets/images/breathwork.png';
 import aboutOneImg from '../assets/images/about-one.png';
 import mindTherapyImg from '../assets/images/mindtherapy.png';
@@ -96,28 +97,18 @@ const Blog = () => {
 
   return (
     <div className="blog-page" style={{ background: '#fff', minHeight: '100vh' }}>
-      <div style={{ padding: '40px 0 40px 0', textAlign: 'center' ,backgroundColor:'#f5f5f5'}}>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#222' }}>Our Blog</h1>
+      {/* Responsive Header */}
+      <div className="blog-header">
+        <h1 className="blog-title">Our Blog</h1>
       </div>
-      {/* Category Buttons with Animation */}
+      
+      {/* Responsive Category Buttons with Animation */}
       <AnimatedSection>
-        <div className="blog-categories" style={{ display: 'flex', justifyContent: 'center', gap: 32, margin: '32px 0' }}>
+        <div className="blog-categories">
           <button
             key="All"
             onClick={() => setSelectedCategory('All')}
-            style={{
-              background: 'none',
-              boxShadow: 'none',
-              border: 'none',
-              borderBottom: selectedCategory === 'All' ? '2px solid #ff7f50' : '2px solid transparent',
-              color: selectedCategory === 'All' ? '#ff7f50' : '#222',
-              fontWeight: 500,
-              fontSize: '1rem',
-              padding: '8px 0',
-              cursor: 'pointer',
-              outline: 'none',
-              transition: 'color 0.2s',
-            }}
+            className={`category-btn ${selectedCategory === 'All' ? 'active' : ''}`}
           >
             All
           </button>
@@ -125,48 +116,20 @@ const Blog = () => {
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              style={{
-                background: 'none',
-                boxShadow: 'none',
-                border: 'none',
-                borderBottom: selectedCategory === cat.id ? '2px solid #ff7f50' : '2px solid transparent',
-                color: selectedCategory === cat.id ? '#ff7f50' : '#222',
-                fontWeight: 500,
-                fontSize: '1rem',
-                padding: '8px 0',
-                cursor: 'pointer',
-                outline: 'none',
-                transition: 'color 0.2s',
-              }}
+              className={`category-btn ${selectedCategory === cat.id ? 'active' : ''}`}
             >
               {cat.category_name}
             </button>
           ))}
         </div>
       </AnimatedSection>
-      <div className="row blog-grid" style={{
-        maxWidth: 1200,
-        margin: '0 auto',
-        padding: '0 16px 40px 16px',
-      }}>
+      
+      {/* Responsive Blog Grid */}
+      <div className="blog-grid">
         {filteredPosts.map((post) => (
-          <div key={post.bl_id} className="col-lg-3 d-flex" style={{ marginBottom: 32 }}>
+          <div key={post.bl_id} className="blog-card-container">
             <div
-              className="blog-card"
-              style={{
-                background: '#fff',
-                borderRadius: 16,
-                boxShadow: '0 2px 16px rgba(0,0,0,0.07)',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-                height: '326px',
-                width: '100%',
-                position: 'relative',
-                cursor: 'pointer',
-                transition: 'box-shadow 0.3s',
-                boxShadow: clickedId === post.bl_id ? '0 4px 24px #ff7f5040' : '0 2px 16px rgba(0,0,0,0.07)',
-              }}
+              className={`blog-card ${clickedId === post.bl_id ? 'clicked' : ''}`}
               onClick={() => { setClickedId(post.bl_id); redirect(post.bl_id)}}
               onMouseDown={() => setClickedId(post.bl_id)}
               onMouseUp={() => setClickedId(null)}
@@ -174,29 +137,18 @@ const Blog = () => {
               <img
                 src={post.image}
                 alt={post.title}
-                style={{
-                  width: '100%',
-                  height: 180,
-                  objectFit: 'cover',
-                  transition: 'transform 0.3s, box-shadow 0.3s',
-                  transform: clickedId === post.id ? 'scale(1.04)' : 'scale(1)',
-                  boxShadow: clickedId === post.id ? '0 4px 24px #ff7f5040' : 'none',
-                }}
+                className="blog-image"
                 onMouseOver={e => e.currentTarget.style.transform = 'scale(1.04)'}
                 onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
               />
-              <div style={{ padding: 20, flex: 1, display: 'flex', flexDirection: 'column' }}>
-                <span style={{ color: '#888', fontSize: 14 }}>{categories.find((cat) => String(cat.id) === String(post.category_id))?.category_name || ''}</span>
-                <h3
-                  style={{
-                    fontSize: '15px',
-                    fontWeight: 600,
-                    margin: '12px 0 0 0',
-                    color: clickedId === post.id ? '#ff7f50' : '#222',
-                    transition: 'color 0.2s',
-                  }}
-                >{post.title}</h3>
-                <span style={{ position: 'absolute', bottom: 12, right: 20, fontSize: 12, color: '#888', fontStyle: 'italic' }}>
+              <div className="blog-content">
+                <span className="blog-category">
+                  {categories.find((cat) => String(cat.id) === String(post.category_id))?.category_name || ''}
+                </span>
+                <h3 className={`blog-title-text ${clickedId === post.bl_id ? 'clicked' : ''}`}>
+                  {post.title}
+                </h3>
+                <span className="blog-author">
                   by balvinder kumar
                 </span>
               </div>

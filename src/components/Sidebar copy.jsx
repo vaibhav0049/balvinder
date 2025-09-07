@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import {
   Drawer,
   List,
@@ -25,14 +25,17 @@ import {
   YouTube as YouTubeIcon,
   Article as BlogIcon,
   Close as CloseIcon,
-  Email as EmailIcon,
-  Dashboard as DashboardIcon
+  Email as EmailIcon
 } from '@mui/icons-material';
+import Categories from '../pages/admin/Categories.jsx';
+import Images from '../pages/admin/Images.jsx';
+import BlogList from '../pages/admin/BlogList.jsx';
+import YouTube from '../pages/admin/YouTube.jsx';
+import ContactMessage from '../pages/admin/ContactMessage.jsx';
 
 const drawerWidth = 280;
 
 const navigationItems = [
-  { text: 'Dashboard', icon: <DashboardIcon />, path: '/admin/dashboard' },
   { text: 'Categories', icon: <CategoryIcon />, path: '/admin/categories' },
   { text: 'Images', icon: <ImageIcon />, path: '/admin/images' },
   { text: 'Blog List', icon: <BlogIcon />, path: '/admin/blog-list' },
@@ -40,7 +43,7 @@ const navigationItems = [
   { text: 'Contact Messages', icon: <EmailIcon />, path: '/admin/contact-messages' },
 ];
 
-const Sidebar = ({ children }) => {
+const Sidebar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -311,23 +314,29 @@ const Sidebar = ({ children }) => {
           minHeight: '100vh'
         }}
       >
-        {/* Render children or default dashboard content */}
-        {children || (
-          <Paper
-            elevation={1}
-            sx={{
-              p: 3,
-              borderRadius: 2
-            }}
-          >
-            <Typography variant="h4" gutterBottom color="primary">
-              Welcome to Admin Dashboard
-            </Typography>
-            <Typography variant="body1" color="text.secondary">
-              Select an option from the sidebar to manage your content.
-            </Typography>
-          </Paper>
-        )}
+        <Routes>
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/images" element={<Images />} />
+          <Route path="/blog-list" element={<BlogList />} />
+          <Route path="/youtube" element={<YouTube />} />
+          <Route path="/contact-messages" element={<ContactMessage />} />
+          <Route path="/" element={
+            <Paper
+              elevation={1}
+              sx={{
+                p: 3,
+                borderRadius: 2
+              }}
+            >
+              <Typography variant="h4" gutterBottom color="primary">
+                Welcome to Admin Dashboard
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                Select an option from the sidebar to manage your content.
+              </Typography>
+            </Paper>
+          } />
+        </Routes>
       </Box>
     </Box>
   );

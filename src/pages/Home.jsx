@@ -290,7 +290,7 @@ export default function Home() {
                       fontWeight: 300,
                     }}
                   >
-                    Whether you're here for reflection, learning, or inspiration, this is a window into the thoughts and creations I’ve nurtured over the years. Dive in, explore, and connect with what resonates with you.
+                    Whether you're here for reflection, learning, or inspiration, this is a window into the thoughts and creations I’ve nurtured over the years.
                   </Typography>
                 </Box>
               </AnimatedSection>
@@ -369,7 +369,7 @@ export default function Home() {
                 }
               }}
             >
-              Explore Web Initiatives on Mind Therapy, Breathwork Centre and AI 
+             Explore My Initiatives: Mind Therapy, Breathwork Centre & Trending AI Tools 
             </Typography>
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
@@ -489,7 +489,7 @@ export default function Home() {
         </Container>
       </Box>
 
-      <Box sx={{py: 10 ,bgcolor: '#fafafa'}}>
+      <Box sx={{ py: 10, bgcolor: '#fafafa' }}>
         <Container maxWidth="lg">
           <AnimatedSection>
             <Box sx={{ textAlign: 'center', mb: 6 }}>
@@ -514,21 +514,27 @@ export default function Home() {
                   }
                 }}
               >
-                Our Blogs
+                Latest Articles
               </Typography>
             </Box>
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
-            <div className="row blog-grid" style={{
-              maxWidth: 1200,
-              margin: '0 auto',
-              padding: '0 16px 40px 16px',
-            }}>
+            <div
+              className="blog-grid"
+              style={{
+                maxWidth: 1200,
+                margin: '0 auto',
+                padding: '0 16px 40px 16px',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(4, 1fr)',
+                gap: 24,
+              }}
+            >
               {blogPosts.map((post, idx) => (
                 <div
                   key={post.bl_id || idx}
-                  className="col-lg-3 d-flex"
-                  style={{ marginBottom: 32, cursor: 'pointer' }}
+                  className="blog-card-container"
+                  style={{ marginBottom: 0, cursor: 'pointer' }}
                   onClick={() => navigate(`/blog/${post.bl_id}`)}
                 >
                   <div
@@ -609,7 +615,7 @@ export default function Home() {
             </div>
           </AnimatedSection>
           <AnimatedSection delay={0.4}>
-            <Box sx={{ textAlign: 'center'}}>
+            <Box sx={{ textAlign: 'center' }}>
               <Button
                 variant="outlined"
                 onClick={() => navigate('/blog')}
@@ -629,7 +635,7 @@ export default function Home() {
                   }
                 }}
               >
-                Read More Blogs
+                Read More Articles
               </Button>
             </Box>
           </AnimatedSection>
@@ -732,7 +738,10 @@ export default function Home() {
             <Box sx={{ textAlign: 'center'}}>
               <Button
                 variant="outlined"
-                onClick={() => navigate('/youtube')}
+                component="a"
+                href="https://www.youtube.com/@exploringlife4769"
+                target="_blank"
+                rel="noopener noreferrer"
                 sx={{
                   borderColor: '#8b4513',
                   color: '#8b4513',
@@ -749,7 +758,7 @@ export default function Home() {
                   }
                 }}
               >
-                View More Videos
+                Visit Exploring Life
               </Button>
             </Box>
           </AnimatedSection>

@@ -158,7 +158,7 @@ export default function Login(props) {
       });
       if(response.data.status == 200){
         localStorage.setItem('token', response.data.token);
-        navigate('/admin/categories');
+        navigate('/admin/dashboard');
       }else{
         setEmailError(true);
         setEmailErrorMessage(response.data.message);

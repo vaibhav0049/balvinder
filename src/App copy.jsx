@@ -12,13 +12,6 @@ import BlogDetail from './pages/BlogDetail.jsx';
 import ContactUs from './pages/ContactUs.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 
-// Import admin pages
-import Categories from './pages/admin/Categories.jsx';
-import Images from './pages/admin/Images.jsx';
-import BlogList from './pages/admin/BlogList.jsx';
-import YouTubeAdmin from './pages/admin/YouTube.jsx';
-import ContactMessage from './pages/admin/ContactMessage.jsx';
-
 function App() {
   return (
     <Router>
@@ -63,49 +56,11 @@ function App() {
             <ContactUs />
           </>
         } />
-        
-        {/* Admin login route */}
+        {/* Admin routes */}
         <Route path="/admin" element={<Login />} />
-        
-        {/* Admin dashboard routes - all individual routes */}
-        <Route path="/admin/dashboard" element={
+        <Route path="/admin/*" element={
           <ProtectedRoute>
             <Sidebar />
-          </ProtectedRoute>
-        } />
-        <Route path="/admin/categories" element={
-          <ProtectedRoute>
-            <Sidebar>
-              <Categories />
-            </Sidebar>
-          </ProtectedRoute>
-        } />
-        <Route path="/admin/images" element={
-          <ProtectedRoute>
-            <Sidebar>
-              <Images />
-            </Sidebar>
-          </ProtectedRoute>
-        } />
-        <Route path="/admin/blog-list" element={
-          <ProtectedRoute>
-            <Sidebar>
-              <BlogList />
-            </Sidebar>
-          </ProtectedRoute>
-        } />
-        <Route path="/admin/youtube" element={
-          <ProtectedRoute>
-            <Sidebar>
-              <YouTubeAdmin />
-            </Sidebar>
-          </ProtectedRoute>
-        } />
-        <Route path="/admin/contact-messages" element={
-          <ProtectedRoute>
-            <Sidebar>
-              <ContactMessage />
-            </Sidebar>
           </ProtectedRoute>
         } />
       </Routes>

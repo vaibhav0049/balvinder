@@ -1,1 +1,1 @@
-export const API_BASE_URL = "http://localhost/balvinderapi/public";
+export const API_BASE_URL = "https://balvinderkumar.com/api/balvinderapi/public/";
